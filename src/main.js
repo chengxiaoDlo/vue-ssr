@@ -3,21 +3,27 @@
 import Vue from 'vue'
 import App from './App'
 import iview from 'iview'
-import store from './store'
-import router from './router'
+import { createStore } from './store'
+import { createRouter } from './router'
 import { sync } from 'vuex-router-sync'
 
 Vue.config.productionTip = false
 
 Vue.use(iview)
 
-sync(store, router)
+export function createApp () {
+  const router = createRouter()
+  const store = createStore()
+  sync(store, router)
 
-/* eslint-disable no-new */
-const app = new Vue({
-  router,
-  store,
-  render: h => h(App)
-})
+  const app = new Vue({
+    router,
+    store,
+    render: h => h(App)
+  })
 
-export { app, router, store }
+  return { app, router, store }
+}
+
+
+

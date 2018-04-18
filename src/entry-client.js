@@ -1,6 +1,7 @@
 import 'es6-promise/auto'
-import { app, store, router } from './main'
+import { createApp } from './main'
 
+const { app, store, router } = createApp()
 if (window.__INITIAL_STATE__) {
   store.replaceState(window.__INITIAL_STATE__)
 }
